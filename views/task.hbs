@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+
+<div class="container my-5  p-2">
+
+<nav class="w-75  d-flex justify-content-between align-items-center m-auto alert alert-warning">
+   <h1> <a class="text-decoration-none text-dark fs-4" href="/">Task Manager</a> </h1>
+      <h2 class="w-50 d-flex justify-content-evenly ">
+         <a class="text-decoration-none text-dark fs-4" href="/user">User</a>
+         <a class="text-decoration-none text-dark fs-4" href="/task">Task</a>
+      </h2>
+        </nav>
+     
+</div>
+   
+<div class="main w-75 my-5">
+<form action="/task" class="w-50 m-auto" method="post">
+  <select name="user" class="form-control w-25" id="cars" >
+    <option value="" selected hidden disable>Select User ></option>
+    {{#each user }}
+      <option value="{{this.name}}">{{this.name}}</option>
+    {{/each}}
+  </select>
+    <input class="form-control  my-3" type="text" name="name" placeholder="task name">
+    <input  type="radio"  value="done"  name="type" >
+    <label for="">Done</label>
+    <br>
+    <input type="radio"  value="pending" name="type" >
+    <label for="">Pending</label>
+    <br>              
+<hr>
+
+<div class="d-flex justify-content-between  "> 
+  <button class="btn btn-success ">Add Task</button>
+  <a class="btn btn-warning text-decoration-none"  href="/get">Get excel data here!</a></div>
+         </form>
+         <hr class="w-50 m-auto mt-5">
+
+         <div class="d-flex justify-content-between m-auto w-50 container mt-5 ">
+        
+          <div class="card" style="width: 25rem;">
+            <div class="header">
+            <h2 class="mx-3">Task details</h2>
+            </div>
+            <div class="box d-flex">
+              <div class="task">
+                <h4 class="m-3 "> Tasks-Users</h4>
+            <ul class="list-group list-group-flush ">
+              <div><table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Task Name</th>
+                    <th scope="col">Task type</th>
+                  </tr>
+                </thead>
+                <tbody>
+             {{#each task as |task|}}
+    <tr>
+      <th scope="row"> {{task.user}}</th>
+      <td>{{ task.taskName}}</td>
+      <td>{{ task.type}}</td>
+    </tr>  
+                {{/each}}
+                 </tbody>
+                </table>
+                </div>
+            </ul>
+          </div>
+          
+          </div>
+          </div>
+        </div>
+
+
+     </div>
+
+     
+<%- include('footer')%>
+</body>
+
